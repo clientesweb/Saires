@@ -53,6 +53,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         body {
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
         }
         .top-banner {
             overflow: hidden;
@@ -92,13 +93,13 @@
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
-        #proyectos .grid {
+        #proyectos .flex {
             display: flex;
             flex-wrap: nowrap;
             gap: 2rem;
             padding-bottom: 1rem;
         }
-        #proyectos .grid > div {
+        #proyectos .flex > div {
             flex: 0 0 auto;
             width: 300px;
         }
@@ -135,6 +136,25 @@
                 transform: scale(0.8);
                 box-shadow: 0 0 0 0 rgba(29, 216, 210, 0);
             }
+        }
+        .faq-item {
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .faq-question {
+            cursor: pointer;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-answer.active {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
         }
     </style>
 </head>
@@ -184,10 +204,10 @@
         <section id="inicio" class="hero-slider">
             <div class="hero-slide active" style="background-image: url('https://via.placeholder.com/1920x1080?text=Proyecto+1');">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div class="text-center">
+                    <div class="text-center px-4">
                         <h1 class="text-4xl md:text-6xl font-bold mb-4">Materializando Sueños</h1>
                         <p class="text-xl md:text-2xl mb-8">Saires Construcciones: Calidad y excelencia en cada detalle</p>
-                        <div class="flex justify-center space-x-4">
+                        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                             <a href="#contacto" class="gradient-bg text-dark py-2 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity">Contáctanos</a>
                             <a href="#servicios" class="bg-white text-dark py-2 px-6 rounded-full font-semibold hover:bg-gray-200 transition-colors">Nuestros Servicios</a>
                         </div>
@@ -196,10 +216,10 @@
             </div>
             <div class="hero-slide" style="background-image: url('https://via.placeholder.com/1920x1080?text=Proyecto+2');">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div class="text-center">
+                    <div class="text-center px-4">
                         <h1 class="text-4xl md:text-6xl font-bold mb-4">Diseños Innovadores</h1>
                         <p class="text-xl md:text-2xl mb-8">Creamos espacios que inspiran y perduran</p>
-                        <div class="flex justify-center space-x-4">
+                        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                             <a href="#contacto" class="gradient-bg text-dark py-2 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity">Solicitar Presupuesto</a>
                             <a href="#proyectos" class="bg-white text-dark py-2 px-6 rounded-full font-semibold hover:bg-gray-200 transition-colors">Ver Proyectos</a>
                         </div>
@@ -208,10 +228,10 @@
             </div>
             <div class="hero-slide" style="background-image: url('https://via.placeholder.com/1920x1080?text=Proyecto+3');">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div class="text-center">
+                    <div class="text-center px-4">
                         <h1 class="text-4xl md:text-6xl font-bold mb-4">Experiencia y Confianza</h1>
                         <p class="text-xl md:text-2xl mb-8">Más de 20 años construyendo hogares</p>
-                        <div class="flex justify-center space-x-4">
+                        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                             <a href="#contacto" class="gradient-bg text-dark py-2 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity">Agenda una Consulta</a>
                             <a href="#galeria" class="bg-white text-dark py-2 px-6 rounded-full font-semibold hover:bg-gray-200 transition-colors">Explorar Galería</a>
                         </div>
@@ -223,7 +243,7 @@
         <section id="servicios" class="py-16 bg-dark">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-12 text-center text-primary">Nuestros Servicios</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up">
                         <i class="fas fa-tractor text-primary text-5xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Excavaciones</h3>
@@ -232,7 +252,7 @@
                     <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up" data-aos-delay="100">
                         <i class="fas fa-couch text-primary text-5xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Muebles a medida</h3>
-                        <p class="text-gray-400">Diseñamos y fabricamos muebles personalizados para tu hogar  u oficina.</p>
+                        <p class="text-gray-400">Diseñamos y fabricamos muebles personalizados para tu hogar u oficina.</p>
                     </div>
                     <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up" data-aos-delay="200">
                         <i class="fas fa-hard-hat text-primary text-5xl mb-4"></i>
@@ -363,17 +383,32 @@
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-12 text-center text-primary">Preguntas Frecuentes</h2>
                 <div class="space-y-4">
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-md" data-aos="fade-up">
-                        <h3 class="text-xl font-semibold mb-2">¿Cuál es el tiempo promedio de una obra?</h3>
-                        <p class="text-gray-400">El tiempo varía según el proyecto, pero nos comprometemos a cumplir con los plazos acordados. Generalmente, una remodelación pequeña puede tomar de 2 a 4 semanas, mientras que un proyecto más grande puede llevar varios meses.</p>
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question">
+                            <h3 class="text-xl font-semibold">¿Cuál es el tiempo promedio de una obra?</h3>
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="text-gray-400 p-4">El tiempo varía según el proyecto, pero nos comprometemos a cumplir con los plazos acordados. Generalmente, una remodelación pequeña puede tomar de 2 a 4 semanas, mientras que un proyecto más grande puede llevar varios meses.</p>
+                        </div>
                     </div>
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-xl font-semibold mb-2">¿Ofrecen garantía por sus servicios?</h3>
-                        <p class="text-gray-400">Sí, todos nuestros trabajos cuentan con garantía. La duración depende del tipo de servicio, pero generalmente ofrecemos una garantía de 1 año en mano de obra y nos aseguramos de utilizar materiales de alta calidad con sus respectivas garantías de fábrica.</p>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question">
+                            <h3 class="text-xl font-semibold">¿Ofrecen garantía por sus servicios?</h3>
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="text-gray-400 p-4">Sí, todos nuestros trabajos cuentan con garantía. La duración depende del tipo de servicio, pero generalmente ofrecemos una garantía de 1 año en mano de obra y nos aseguramos de utilizar materiales de alta calidad con sus respectivas garantías de fábrica.</p>
+                        </div>
                     </div>
-                    <div class="bg-gray-800 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-xl font-semibold mb-2">¿Trabajan en proyectos fuera de Villa del Dique?</h3>
-                        <p class="text-gray-400">Sí, aunque estamos basados en Villa del Dique, trabajamos en proyectos en toda la región de Córdoba. Dependiendo del tamaño y alcance del proyecto, podemos considerar trabajos en otras áreas.</p>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question">
+                            <h3 class="text-xl font-semibold">¿Trabajan en proyectos fuera de Villa del Dique?</h3>
+                            <i class="fas fa-chevron-down text-primary"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p class="text-gray-400 p-4">Sí, aunque estamos basados en Villa del Dique, trabajamos en proyectos en toda la región de Córdoba. Dependiendo del tamaño y alcance del proyecto, podemos considerar trabajos en otras áreas.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -519,6 +554,18 @@
         // Preloader
         window.addEventListener('load', function() {
             document.getElementById('preloader').style.display = 'none';
+        });
+
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                answer.classList.toggle('active');
+                icon.classList.toggle('fa-chevron-up');
+                icon.classList.toggle('fa-chevron-down');
+            });
         });
     </script>
 </body>
