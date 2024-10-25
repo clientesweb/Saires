@@ -33,6 +33,7 @@
     <meta name="theme-color" content="#1CD8D2">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -42,6 +43,7 @@
                         primary: '#1CD8D2',
                         secondary: '#93EDC7',
                         dark: '#1a1a1a',
+                        'primary-dark': '#00A6A0'
                     }
                 }
             }
@@ -154,6 +156,76 @@
             max-height: 500px;
             transition: max-height 0.5s ease-in;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #1a1a1a;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 800px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 300px;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 68px;
+            height: 48px;
+            background-color: rgba(0,0,0,0.7);
+            border-radius: 14px;
+            cursor: pointer;
+        }
+        .play-button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-style: solid;
+            border-width: 10px 0 10px 20px;
+            border-color: transparent transparent transparent white;
+        }
     </style>
 </head>
 <body class="bg-dark text-white">
@@ -215,7 +287,7 @@
             <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div class="text-center px-4">
-                        <h1 class="text-4xl md:text-6xl font-bold mb-4">Diseños Innovadores</h1>
+                        <h1 class="text-4xl md:text-6xl font-bold  mb-4">Diseños Innovadores</h1>
                         <p class="text-xl md:text-2xl mb-8">Creamos espacios que inspiran y perduran</p>
                         <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                             <a href="#contacto" class="gradient-bg text-dark py-2 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity">Solicitar Presupuesto</a>
@@ -242,7 +314,6 @@
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-12 text-center text-primary">Nuestros Servicios</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
                     <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
                         <i class="fas fa-tractor text-primary text-5xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Excavaciones</h3>
@@ -273,6 +344,11 @@
                         <h3 class="text-xl font-semibold mb-2">Griferías y accesorios de baño</h3>
                         <p class="text-gray-400">Ofrecemos una amplia gama de griferías y accesorios de baño de las mejores marcas.</p>
                     </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
+                        <i class="fas fa-bars text-primary text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Rejas</h3>
+                        <p class="text-gray-400">Diseñamos e instalamos rejas de seguridad y decorativas para tu hogar o negocio.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -285,35 +361,40 @@
                         <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Residencia Moderna" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2">Residencia Moderna</h3>
-                            <p class="text-gray-400">Diseño y construcción de una residencia moderna con eficiencia energética.</p>
+                            <p class="text-gray-400 mb-4">Diseño y construcción de una residencia moderna con eficiencia energética.</p>
+                            <button onclick="openModal('proyecto1')" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                         </div>
                     </div>
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex-shrink-0 w-80">
                         <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Remodelación Comercial" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2">Remodelación Comercial</h3>
-                            <p class="text-gray-400">Renovación completa de un espacio comercial en el centro de la ciudad.</p>
+                            <p class="text-gray-400 mb-4">Renovación completa de un espacio comercial en el centro de la ciudad.</p>
+                            <button onclick="openModal('proyecto2')" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                         </div>
                     </div>
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex-shrink-0 w-80">
                         <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Ampliación Residencial" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2">Ampliación Residencial</h3>
-                            <p class="text-gray-400">Ampliación y modernización de una residencia familiar tradicional.</p>
+                            <p class="text-gray-400 mb-4">Ampliación y modernización de una residencia familiar tradicional.</p>
+                            <button onclick="openModal('proyecto3')" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                         </div>
                     </div>
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex-shrink-0 w-80">
                         <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Diseño de Interiores" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2">Diseño de Interiores</h3>
-                            <p class="text-gray-400">Proyecto de diseño de interiores para un loft urbano contemporáneo.</p>
+                            <p class="text-gray-400 mb-4">Proyecto de diseño de interiores para un loft urbano contemporáneo.</p>
+                            <button onclick="openModal('proyecto4')" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                         </div>
                     </div>
                     <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex-shrink-0 w-80">
                         <img src="https://images.unsplash.com/photo-1630699144867-37acec97df5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Construcción Sustentable" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2">Construcción Sustentable</h3>
-                            <p class="text-gray-400">Proyecto de vivienda ecológica con materiales sostenibles y energías renovables.</p>
+                            <p class="text-gray-400 mb-4">Proyecto de vivienda ecológica con materiales sostenibles y energías renovables.</p>
+                            <button onclick="openModal('proyecto5')" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                         </div>
                     </div>
                 </div>
@@ -323,35 +404,54 @@
         <section id="galeria" class="py-16 bg-dark">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-12 text-center text-primary">Galería de Proyectos</h2>
-                <!-- Filter buttons remain unchanged -->
+                <div class="flex flex-wrap justify-center mb-8">
+                    <button class="filter-btn active mx-2 my-2 px-4 py-2 gradient-bg text-dark rounded-full" data-filter="all">Todos</button>
+                    <button class="filter-btn mx-2 my-2 px-4 py-2 bg-gray-700 text-white rounded-full" data-filter="residencial">Residencial</button>
+                    <button class="filter-btn mx-2 my-2 px-4 py-2 bg-gray-700 text-white rounded-full" data-filter="comercial">Comercial</button>
+                    <button class="filter-btn mx-2 my-2 px-4 py-2 bg-gray-700 text-white rounded-full" data-filter="remodelacion">Remodelación</button>
+                    <button class="filter-btn mx-2 my-2 px-4 py-2 bg-gray-700 text-white rounded-full" data-filter="diseno">Diseño</button>
+                    <button class="filter-btn mx-2 my-2 px-4 py-2 bg-gray-700 text-white rounded-full" data-filter="exterior">Exterior</button>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid">
                     <div class="gallery-item residencial">
-                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Proyecto Residencial 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Proyecto Residencial 1" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer" onclick="openModal('galeria1')">
+                        <button onclick="openModal('galeria1')" class="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                     </div>
                     <div class="gallery-item comercial">
-                        <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Comercial 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Comercial 1" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer" onclick="openModal('galeria2')">
+                        <button onclick="openModal('galeria2')" class="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                     </div>
                     <div class="gallery-item remodelacion">
-                        <img src="https://images.unsplash.com/photo-1574359411659-15573a27fd0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Remodelación 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="https://images.unsplash.com/photo-1574359411659-15573a27fd0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Remodelación 1" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer" onclick="openModal('galeria3')">
+                        <button onclick="openModal('galeria3')" class="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                     </div>
                     <div class="gallery-item diseno">
-                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Proyecto Diseño 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80"  alt="Proyecto Diseño 1" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer" onclick="openModal('galeria4')">
+                        <button onclick="openModal('galeria4')" class="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                     </div>
                     <div class="gallery-item exterior">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Exterior 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Exterior 1" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer" onclick="openModal('galeria5')">
+                        <button onclick="openModal('galeria5')" class="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                     </div>
                     <div class="gallery-item residencial">
-                        <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Residencial 2" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Residencial 2" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer" onclick="openModal('galeria6')">
+                        <button onclick="openModal('galeria6')" class="mt-4 bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">Ver más</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="video" class="py-16 bg-gray-900">
+        <section id="video"         class="py-16 bg-gray-900">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-12 text-center text-primary">Nuestro Trabajo en Acción</h2>
-                <div class="aspect-w-16 aspect-h-9">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+                <div class="max-w-4xl mx-auto">
+                    <div class="video-container">
+                        <div id="video-placeholder" class="w-full h-full bg-gray-800 flex items-center justify-center">
+                            <img src="https://images.unsplash.com/photo-1541976590-713941681591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Video Thumbnail" class="w-full h-full object-cover">
+                            <div class="play-button"></div>
+                        </div>
+                        <iframe id="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
+                    </div>
                 </div>
             </div>
         </section>
@@ -359,65 +459,94 @@
         <section id="faqs" class="py-16 bg-dark">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-12 text-center text-primary">Preguntas Frecuentes</h2>
-                <div class="space-y-4">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3 class="text-xl font-semibold">¿Cuál es el tiempo promedio de una obra?</h3>
-                            <i class="fas fa-chevron-down text-primary"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p class="text-gray-400 p-4">El tiempo varía según el proyecto, pero nos comprometemos a cumplir con los plazos acordados. Generalmente, una remodelación pequeña puede tomar de 2 a 4 semanas, mientras que un proyecto más grande puede llevar varios meses.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3 class="text-xl font-semibold">¿Ofrecen garantía por sus servicios?</h3>
-                            <i class="fas fa-chevron-down text-primary"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p class="text-gray-400 p-4">Sí, todos nuestros trabajos cuentan con garantía. La duración depende del tipo de servicio, pero generalmente ofrecemos una garantía de 1 año en mano de obra y nos aseguramos de utilizar materiales de alta calidad con sus respectivas garantías de fábrica.</p>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <div class="bg-gray-800 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full text-left px-6 py-4 focus:outline-none">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-lg font-semibold">¿Cuánto tiempo toma completar un proyecto típico?</h3>
+                                <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                            </div>
+                        </button>
+                        <div class="faq-answer px-6 py-4 bg-gray-700 hidden">
+                            <p>El tiempo de finalización varía según el alcance y la complejidad del proyecto. Un proyecto residencial típico puede llevar de 3 a 6 meses, mientras que proyectos más grandes pueden tomar hasta un año o más.</p>
                         </div>
                     </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3 class="text-xl font-semibold">¿Trabajan en proyectos fuera de Villa del Dique?</h3>
-                            <i class="fas fa-chevron-down text-primary"></i>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full text-left px-6 py-4 focus:outline-none">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-lg font-semibold">¿Ofrecen garantía en sus trabajos?</h3>
+                                <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                            </div>
+                        </button>
+                        <div class="faq-answer px-6 py-4 bg-gray-700 hidden">
+                            <p>Sí, ofrecemos una garantía de 1 año en todos nuestros trabajos. Esto cubre defectos en materiales y mano de obra. Además, trabajamos con proveedores que ofrecen garantías extendidas en productos específicos.</p>
                         </div>
-                        <div class="faq-answer">
-                            <p class="text-gray-400 p-4">Sí, aunque estamos basados en Villa del Dique, trabajamos en proyectos en toda la región de Córdoba. Dependiendo del tamaño y alcance del proyecto, podemos considerar trabajos en otras áreas.</p>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full text-left px-6 py-4 focus:outline-none">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-lg font-semibold">¿Cómo manejan los cambios en el proyecto durante la construcción?</h3>
+                                <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                            </div>
+                        </button>
+                        <div class="faq-answer px-6 py-4 bg-gray-700 hidden">
+                            <p>Entendemos que pueden surgir cambios durante el proceso de construcción. Manejamos estos cambios a través de órdenes de cambio formales, que detallan las modificaciones, costos asociados y cualquier ajuste en el cronograma. Siempre nos comunicamos de manera transparente sobre el impacto de estos cambios.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section class="py-16 bg-primary">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4 text-white">¡Oferta Especial!</h2>
+                <p class="text-xl mb-8 text-white">10% de descuento en todos nuestros servicios durante este mes</p>
+                <a href="#contacto" class="bg-white text-primary font-bold py-2 px-6 rounded-full hover:bg-gray-200 transition-colors">Contáctanos Ahora</a>
+            </div>
+        </section>
+
         <section id="contacto" class="py-16 bg-gray-900">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-12 text-center text-primary">Contáctanos</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid md:grid-cols-2 gap-8">
                     <div>
-                        <form id="contact-form" class="space-y-4">
-                            <input type="text" placeholder="Nombre" class="w-full p-2 border rounded bg-gray-800 text-white" required>
-                            <input type="email" placeholder="Email" class="w-full p-2 border rounded bg-gray-800 text-white" required>
-                            <input type="tel" placeholder="Teléfono" class="w-full p-2 border rounded bg-gray-800 text-white" required>
-                            <textarea placeholder="Mensaje" class="w-full p-2 border rounded bg-gray-800 text-white" rows="4" required></textarea>
-                            <button type="submit" class="gradient-bg text-dark py-2 px-6 rounded-full hover:opacity-90 transition-opacity">Enviar Mensaje</button>
+                        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-4">
+                            <div>
+                                <label for="nombre" class="block text-sm font-medium text-gray-400">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" class="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 text-white shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-400">Email</label>
+                                <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 text-white shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required>
+                            </div>
+                            <div>
+                                <label for="mensaje" class="block text-sm font-medium text-gray-400">Mensaje</label>
+                                <textarea id="mensaje" name="mensaje" rows="4" class="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 text-white shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full gradient-bg text-dark py-2 px-4 rounded-md font-semibold hover:opacity-90 transition-opacity">Enviar Mensaje</button>
+                            </div>
                         </form>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4">Información de Contacto</h3>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Villa del Dique, Córdoba, Argentina</li>
-                            <li class="flex items-center"><i class="fas fa-phone mr-2 text-primary"></i> +54 9 3546 500176</li>
-                            <li class="flex items-center"><i class="fas fa-envelope mr-2 text-primary"></i> info@sairesconstrucciones.com</li>
-                        </ul>
-                        <div class="mb-6">
-                            <h4 class="text-lg font-semibold mb-2">Horario de Atención</h4>
-                            <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
-                            <p>Sábados: 9:00 AM - 1:00 PM</p>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Información de Contacto</h3>
+                            <p class="text-gray-400"><i class="fas fa-map-marker-alt text-primary mr-2"></i> Av. San Martín 123, Villa del Dique, Córdoba</p>
+                            <p class="text-gray-400"><i class="fas fa-phone text-primary mr-2"></i> +54 9 3546 123456</p>
+                            <p class="text-gray-400"><i class="fas fa-envelope text-primary mr-2"></i> info@sairesconstrucciones.com</p>
                         </div>
-                        <div class="aspect-w-16 aspect-h-9">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27087.78126211651!2d-64.49830344999999!3d-32.08333315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d2c9c7e0a9c4c7%3A0x6d0d9b4f0d8c0a0!2sVilla%20del%20Dique%2C%20C%C3%B3rdoba!5e0!3m2!1ses-419!2sar!4v1635789012345!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="w-full h-full rounded-lg"></iframe>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Horario de Atención</h3>
+                            <p class="text-gray-400">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                            <p class="text-gray-400">Sábados: 10:00 AM - 2:00 PM</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Síguenos en Redes Sociales</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -425,74 +554,271 @@
         </section>
     </main>
 
-    <footer class="gradient-bg text-dark py-8">
+    <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 gap-8">
                 <div>
-                    <img src="logo.png" alt="Saires Construcciones Logo" class="w-16 h-16 rounded-full mb-4">
-                    <p>Materializando tus sueños desde Villa del Dique, Córdoba, Argentina.</p>
+                    <img src="logo.png" alt="Saires Construcciones Logo" class="w-16 h-16 mb-4 rounded-full">
+                    <p class="text-sm text-gray-400">Saires Construcciones: Materializando tus sueños con calidad y excelencia desde 2003.</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Enlaces Rápidos</h3>
+                    <h3 class="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
                     <ul class="space-y-2">
-                        <li><a href="#inicio" class="hover:text-white transition-colors">Inicio</a></li>
-                        <li><a href="#servicios" class="hover:text-white transition-colors">Servicios</a></li>
-                        <li><a href="#proyectos" class="hover:text-white transition-colors">Proyectos</a></li>
-                        <li><a href="#galeria" class="hover:text-white transition-colors">Galería</a></li>
-                        <li><a href="#faqs" class="hover:text-white transition-colors">FAQs</a></li>
-                        <li><a href="#contacto" class="hover:text-white transition-colors">Contacto</a></li>
+                        <li><a href="#inicio" class="text-gray-400 hover:text-primary transition-colors">Inicio</a></li>
+                        <li><a href="#servicios" class="text-gray-400 hover:text-primary transition-colors">Servicios</a></li>
+                        <li><a href="#proyectos" class="text-gray-400 hover:text-primary transition-colors">Proyectos</a></li>
+                        <li><a href="#galeria" class="text-gray-400 hover:text-primary transition-colors">Galería</a></li>
+                        <li><a href="#contacto" class="text-gray-400 hover:text-primary transition-colors">Contacto</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Síguenos</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-dark hover:text-white transition-colors"><i class="fab fa-facebook-f text-2xl"></i></a>
-                        <a href="#" class="text-dark hover:text-white transition-colors"><i class="fab fa-instagram text-2xl"></i></a>
-                        <a href="#" class="text-dark hover:text-white transition-colors"><i class="fab fa-twitter text-2xl"></i></a>
-                        <a href="#" class="text-dark hover:text-white transition-colors"><i class="fab fa-linkedin-in text-2xl"></i></a>
-                    </div>
+                    <h3 class="text-lg font-semibold mb-4">Boletín Informativo</h3>
+                    <p class="text-sm text-gray-400 mb-4">Suscríbete para recibir nuestras últimas noticias y ofertas especiales.</p>
+                    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="flex">
+                        <input type="email" name="email" placeholder="Tu email" class="flex-grow rounded-l-md bg-gray-800 border-gray-700 text-white focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required>
+                        <button type="submit" class="gradient-bg text-dark px-4 py-2 rounded-r-md font-semibold hover:opacity-90 transition-opacity">Suscribirse</button>
+                    </form>
                 </div>
             </div>
-            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
-                <p>&copy; 2024 Saires Construcciones. Todos los derechos reservados.</p>
-                <p class="mt-2">Powered by <a href="https://dualitydomain.com" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">Duality Domain</a></p>
+            <div class="mt-8 text-center text-sm text-gray-400">
+                Powered By <a href="https://dualitydomain.com" class="text-primary hover:underline">Duality Domain</a>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
+                <p>&copy; 2023 Saires Construcciones. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/5493546500176" target="_blank" rel="noopener noreferrer" class="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-3 shadow-lg hover:bg-green-600 transition-colors z-50">
+    <a href="https://wa.me/5493546123456" class="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-3 hover:bg-green-600 transition-colors" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
+    <div id="proyecto1" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Residencia Moderna</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Residencia Moderna 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Residencia Moderna 2"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Residencia Moderna 3"></div>
+                </div>
+            </div>
+            <p class="mt-4">Este proyecto de residencia moderna incorpora los últimos avances en eficiencia energética y diseño sostenible. Con amplios espacios abiertos, grandes ventanales para maximizar la luz natural y un sistema de domótica integrado, esta casa es un ejemplo perfecto de cómo la arquitectura moderna puede combinar estética y funcionalidad.</p>
+        </div>
+    </div>
+
+    <div id="proyecto2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Remodelación Comercial</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Remodelación Comercial 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Remodelación Comercial 2"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Remodelación Comercial 3"></div>
+                </div>
+            </div>
+            <p class="mt-4">Esta remodelación comercial transformó un antiguo almacén en un moderno espacio de oficinas. El proyecto incluyó la restauración de elementos arquitectónicos originales, la instalación de sistemas de iluminación y climatización eficientes, y la creación de espacios de trabajo flexibles y colaborativos.</p>
+        </div>
+    </div>
+
+    <div id="proyecto3" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Ampliación Residencial</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Ampliación Residencial 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600566753151-384129cf4e3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Ampliación Residencial 2"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Ampliación Residencial 3"></div>
+                </div>
+            </div>
+            <p class="mt-4">Este proyecto de ampliación residencial añadió un nuevo ala a una casa familiar tradicional. La ampliación incluyó una suite principal, un estudio y una terraza con vista al jardín. El diseño se integró perfectamente con la estructura existente, respetando el estilo original de la casa mientras incorporaba elementos modernos.</p>
+        </div>
+    </div>
+
+    <div id="proyecto4" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Diseño de Interiores</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Diseño de Interiores 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Diseño de Interiores 2"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Diseño de Interiores 3"></div>
+                </div>
+            </div>
+            <p class="mt-4">Este proyecto de diseño de interiores para un loft urbano contemporáneo se centró en crear un espacio abierto y multifuncional. Utilizamos una paleta de colores neutros con acentos audaces, muebles personalizados y una iluminación cuidadosamente planificada para maximizar la sensación de espacio y crear un ambiente acogedor y sofisticado.</p>
+        </div>
+    </div>
+
+    <div id="proyecto5" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Construcción Sustentable</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1630699144867-37acec97df5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Construcción Sustentable 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Construcción Sustentable 2"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Construcción Sustentable 3"></div>
+                </div>
+            </div>
+            <p class="mt-4">Este proyecto de vivienda ecológica incorpora los últimos avances en construcción sustentable. Utilizamos materiales reciclados y de origen local, implementamos sistemas de energía solar y de recolección de agua de lluvia, y diseñamos la casa para maximizar la ventilación natural y la eficiencia energética. El resultado es una vivienda hermosa y confortable con un mínimo impacto ambiental.</p>
+        </div>
+    </div>
+
+    <div id="galeria1" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Proyecto Residencial Moderno</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Proyecto Residencial 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Residencial 1 - Interior"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Residencial 1 - Exterior"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <p class="mt-4">Este proyecto residencial moderno combina elegancia y funcionalidad. Con amplios espacios abiertos, grandes ventanales y un diseño minimalista, esta casa ofrece un ambiente luminoso y acogedor. Incorporamos tecnologías de eficiencia energética y materiales sostenibles para crear un hogar que no solo es hermoso, sino también respetuoso con el medio ambiente.</p>
+        </div>
+    </div>
+
+    <div id="galeria2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Proyecto Comercial Innovador</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Comercial 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Proyecto Comercial 1 - Interior"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Comercial 1 - Exterior"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <p class="mt-4">Este proyecto comercial innovador transformó un espacio industrial en una moderna oficina de planta abierta. El diseño incorpora elementos industriales originales con toques contemporáneos, creando un ambiente de trabajo dinámico y creativo. La iluminación natural y los espacios flexibles fomentan la colaboración y la productividad.</p>
+        </div>
+    </div>
+
+    <div id="galeria3" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Proyecto de Remodelación Integral</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1574359411659-15573a27fd0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Remodelación 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Proyecto Remodelación 1 -   Antes"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Remodelación 1 - Después"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <p class="mt-4">Este proyecto de remodelación integral transformó una casa anticuada en un hogar moderno y funcional. Derribamos paredes para crear un espacio de planta abierta, actualizamos todas las instalaciones y añadimos toques de diseño contemporáneo. El resultado es una vivienda luminosa, espaciosa y adaptada a las necesidades de la vida moderna.</p>
+        </div>
+    </div>
+
+    <div id="galeria4" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Proyecto de Diseño Interior Contemporáneo</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Proyecto Diseño 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Proyecto Diseño 1 - Sala de estar"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Proyecto Diseño 1 - Cocina"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <p class="mt-4">Este proyecto de diseño interior contemporáneo transformó un apartamento básico en un espacio sofisticado y acogedor. Utilizamos una paleta de colores neutros con acentos audaces, incorporamos muebles a medida y creamos un sistema de iluminación personalizado. El resultado es un interior que refleja la personalidad del cliente y maximiza la funcionalidad del espacio.</p>
+        </div>
+    </div>
+
+    <div id="galeria5" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Proyecto de Diseño Exterior y Paisajismo</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Exterior 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2078&q=80" alt="Proyecto Exterior 1 - Jardín"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1564013434775-f71db0030976?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Exterior 1 - Piscina"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <p class="mt-4">Este proyecto de diseño exterior y paisajismo transformó un patio trasero sin vida en un oasis al aire libre. Creamos zonas diferenciadas para relajación, entretenimiento y jardinería. Incorporamos una piscina de diseño, una zona de barbacoa y utilizamos plantas autóctonas para crear un paisaje hermoso y de bajo mantenimiento.</p>
+        </div>
+    </div>
+
+    <div id="galeria6" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Proyecto Residencial de Lujo</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Residencial 2"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Proyecto Residencial 2 - Interior"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80" alt="Proyecto Residencial 2 - Exterior"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <p class="mt-4">Este proyecto residencial de lujo combina elegancia clásica con comodidades modernas. La casa cuenta con amplios espacios de entretenimiento, una cocina gourmet, un gimnasio privado y un cine en casa. El diseño exterior incorpora elementos arquitectónicos tradicionales con un toque contemporáneo, creando una residencia verdaderamente impresionante.</p>
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').style.display = 'none';
+        });
+
         // Mobile menu toggle
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
         // Hero slider
-        const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const totalSlides = slides.length;
 
-        function showSlide(n) {
+        function showSlide(index) {
             slides[currentSlide].classList.remove('active');
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
+            slides[index].classList.add('active');
+            currentSlide = index;
         }
 
-        setInterval(() => {
-            showSlide(currentSlide + 1);
-        }, 5000);
+        function nextSlide() {
+            showSlide((currentSlide + 1) % totalSlides);
+        }
+
+        setInterval(nextSlide, 5000);
+
+        // FAQ accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                // Close all other answers
+                faqQuestions.forEach(q => {
+                    if (q !== question) {
+                        q.nextElementSibling.style.maxHeight = null;
+                        q.querySelector('i').classList.remove('rotate-180');
+                    }
+                });
+
+                // Toggle current answer
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                    icon.classList.remove('rotate-180');
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
 
         // Gallery filter
         const filterButtons = document.querySelectorAll('.filter-btn');
@@ -500,11 +826,11 @@
 
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const filter = button.dataset.filter;
+                const filter = button.getAttribute('data-filter');
                 
                 filterButtons.forEach(btn => btn.classList.remove('active', 'gradient-bg', 'text-dark'));
                 button.classList.add('active', 'gradient-bg', 'text-dark');
-
+                
                 galleryItems.forEach(item => {
                     if (filter === 'all' || item.classList.contains(filter)) {
                         item.style.display = 'block';
@@ -515,77 +841,42 @@
             });
         });
 
-        // Form submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
-            this.reset();
-        });
+        // Modal functionality
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+            initSwiper(modalId);
+        }
 
-        // Preloader
-        window.addEventListener('load', function() {
-            document.getElementById('preloader').style.display = 'none';
-        });
-
-        // FAQ Accordion
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const icon = question.querySelector('i');
-                answer.classList.toggle('active');
-                icon.classList.toggle('fa-chevron-up');
-                icon.classList.toggle('fa-chevron-down');
-            });
-        });
-
-        // Lazy loading images
-        document.addEventListener("DOMContentLoaded", function() {
-            var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
-
-            if ("IntersectionObserver" in window) {
-                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            let lazyImage = entry.target;
-                            lazyImage.src = lazyImage.dataset.src;
-                            lazyImage.classList.remove("lazy");
-                            lazyImageObserver.unobserve(lazyImage);
-                        }
-                    });
-                });
-
-                lazyImages.forEach(function(lazyImage) {
-                    lazyImageObserver.observe(lazyImage);
-                });
-            } else {
-                // Fallback for browsers that don't support IntersectionObserver
-                let lazyLoadThrottleTimeout;
-                function lazyLoad () {
-                    if(lazyLoadThrottleTimeout) {
-                        clearTimeout(lazyLoadThrottleTimeout);
-                    }    
-
-                    lazyLoadThrottleTimeout = setTimeout(function() {
-                        let scrollTop = window.pageYOffset;
-                        lazyImages.forEach(function(img) {
-                            if(img.offsetTop < (window.innerHeight + scrollTop)) {
-                                img.src = img.dataset.src;
-                                img.classList.remove('lazy');
-                            }
-                        });
-                        if(lazyImages.length == 0) { 
-                            document.removeEventListener("scroll", lazyLoad);
-                            window.removeEventListener("resize", lazyLoad);
-                            window.removeEventListener("orientationChange", lazyLoad);
-                        }
-                    }, 20);
-                }
-
-                document.addEventListener("scroll", lazyLoad);
-                window.addEventListener("resize", lazyLoad);
-                window.addEventListener("orientationChange", lazyLoad);
+        const closeBtns = document.getElementsByClassName("close");
+        for (let i = 0; i < closeBtns.length; i++) {
+            closeBtns[i].onclick = function() {
+                this.parentElement.parentElement.style.display = "none";
             }
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+
+        function initSwiper(modalId) {
+            new Swiper(`#${modalId} .swiper-container`, {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+            });
+        }
+
+        // YouTube-like video player
+        const videoPlaceholder = document.getElementById('video-placeholder');
+        const youtubeVideo = document.getElementById('youtube-video');
+
+        videoPlaceholder.addEventListener('click', function() {
+            videoPlaceholder.style.display = 'none';
+            youtubeVideo.style.display = 'block';
+            youtubeVideo.src += "?autoplay=1";
         });
     </script>
 </body>
