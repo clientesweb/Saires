@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saires Construcciones - Materializando tus sueños</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1CD8D2',
+                        secondary: '#93EDC7',
+                        dark: '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .top-banner {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .top-banner-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .hero-slider {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1CD8D2, #93EDC7);
+        }
+    </style>
+</head>
+<body class="bg-dark text-white">
+    <div class="top-banner gradient-bg text-dark py-2">
+        <div class="top-banner-content">
+            <span class="mx-4">¡Oferta especial! 15% de descuento en remodelaciones</span>
+            <span class="mx-4">Financiación sin interés hasta 12 cuotas</span>
+            <span class="mx-4">Consulta por nuestros servicios de diseño personalizado</span>
+        </div>
+    </div>
+
+    <header class="bg-dark shadow-md w-full z-50 sticky top-0">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_20241024-235425-seJTw69HhPXgBfhNlFDzDh4eFXfQdj.png" alt="Saires Construcciones Logo" class="w-16 h-16 rounded-full">
+            <nav class="hidden md:flex space-x-6">
+                <a href="#inicio" class="text-white hover:text-primary transition-colors">Inicio</a>
+                <a href="#servicios" class="text-white hover:text-primary transition-colors">Servicios</a>
+                <a href="#proyectos" class="text-white hover:text-primary transition-colors">Proyectos</a>
+                <a href="#galeria" class="text-white hover:text-primary transition-colors">Galería</a>
+                <a href="#faqs" class="text-white hover:text-primary transition-colors">FAQs</a>
+                <a href="#contacto" class="text-white hover:text-primary transition-colors">Contacto</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-white hover:text-primary transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                <button id="menu-toggle" class="md:hidden text-white hover:text-primary transition-colors">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-dark shadow-md">
+            <a href="#inicio" class="block px-4 py-2 text-white hover:bg-primary hover:text-dark">Inicio</a>
+            <a href="#servicios" class="block px-4 py-2 text-white hover:bg-primary hover:text-dark">Servicios</a>
+            <a href="#proyectos" class="block px-4 py-2 text-white hover:bg-primary hover:text-dark">Proyectos</a>
+            <a href="#galeria" class="block px-4 py-2 text-white hover:bg-primary hover:text-dark">Galería</a>
+            <a href="#faqs" class="block px-4 py-2 text-white hover:bg-primary hover:text-dark">FAQs</a>
+            <a href="#contacto" class="block px-4 py-2 text-white hover:bg-primary hover:text-dark">Contacto</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('https://via.placeholder.com/1920x1080?text=Proyecto+1');">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4">Materializando Sueños</h1>
+                        <p class="text-xl md:text-2xl mb-8">Saires Construcciones: Calidad y excelencia en cada detalle</p>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#contacto" class="gradient-bg text-dark py-2 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity">Contáctanos</a>
+                            <a href="#servicios" class="bg-white text-dark py-2 px-6 rounded-full font-semibold hover:bg-gray-200 transition-colors">Nuestros Servicios</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('https://via.placeholder.com/1920x1080?text=Proyecto+2');">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4">Diseños Innovadores</h1>
+                        <p class="text-xl md:text-2xl mb-8">Creamos espacios que inspiran y perduran</p>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#contacto" class="gradient-bg text-dark py-2 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity">Solicitar Presupuesto</a>
+                            <a href="#proyectos" class="bg-white text-dark py-2 px-6 rounded-full font-semibold hover:bg-gray-200 transition-colors">Ver Proyectos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('https://via.placeholder.com/1920x1080?text=Proyecto+3');">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4">Experiencia y Confianza</h1>
+                        <p class="text-xl md:text-2xl mb-8">Más de 20 años construyendo hogares</p>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#contacto" class="gradient-bg text-dark py-2 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity">Agenda una Consulta</a>
+                            <a href="#galeria" class="bg-white text-dark py-2 px-6 rounded-full font-semibold hover:bg-gray-200 transition-colors">Explorar Galería</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="py-16 bg-dark">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-12 text-center text-primary">Nuestros Servicios</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up">
+                        <i class="fas fa-tractor text-primary text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Excavaciones</h3>
+                        <p class="text-gray-400">Realizamos excavaciones precisas y seguras para todo tipo de proyectos.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-couch text-primary text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Muebles a medida</h3>
+                        <p class="text-gray-400">Diseñamos y fabricamos muebles personalizados para tu hogar u oficina.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-hard-hat text-primary text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Obras completas</h3>
+                        <p class="text-gray-400">Gestionamos proyectos de construcción desde el diseño hasta la entrega final.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up">
+                        <i class="fas fa-drafting-compass text-primary text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Proyectos arquitectónicos y de diseño</h3>
+                        <p class="text-gray-400">Desarrollamos proyectos arquitectónicos innovadores y funcionales.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-tools text-primary text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Instalaciones generales</h3>
+                        <p class="text-gray-400">Realizamos instalaciones de plomería, electricidad y gas con los más altos estándares.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-shower text-primary text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Griferías y accesorios de baño</h3>
+                        <p class="text-gray-400">Ofrecemos una amplia gama de griferías y accesorios de baño de las mejores marcas.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up">
+                        <i class="fas fa-door-open text-primary text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Aberturas y cerramientos</h3>
+                        <p class="text-gray-400">Instalamos aberturas y cerramientos de alta calidad para mejorar la eficiencia energética.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-fire text-primary text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Estufas y calefacción</h3>
+                        <p class="text-gray-400">Suministramos e instalamos sistemas de calefacción eficientes para tu confort.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-shield-alt text-primary text-5xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Rejas y protección</h3>
+                        <p class="text-gray-400">Diseñamos e instalamos rejas y sistemas de protección para garantizar tu seguridad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos" class="py-16  bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-12 text-center text-primary">Proyectos Destacados</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up">
+                        <img src="https://via.placeholder.com/400x300?text=Proyecto+1" alt="Proyecto 1" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2">Residencia Moderna</h3>
+                            <p class="text-gray-400">Diseño y construcción de una residencia moderna con eficiencia energética.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://via.placeholder.com/400x300?text=Proyecto+2" alt="Proyecto 2" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2">Remodelación Comercial</h3>
+                            <p class="text-gray-400">Renovación completa de un espacio comercial en el centro de la ciudad.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://via.placeholder.com/400x300?text=Proyecto+3" alt="Proyecto 3" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2">Ampliación Residencial</h3>
+                            <p class="text-gray-400">Ampliación y modernización de una residencia familiar tradicional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria" class="py-16 bg-dark">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-12 text-center text-primary">Galería de Proyectos</h2>
+                <div class="flex flex-wrap justify-center mb-8">
+                    <button class="filter-btn active mx-2 my-2 px-4 py-2 gradient-bg text-dark rounded-full" data-filter="all">Todos</button>
+                    <button class="filter-btn mx-2 my-2 px-4 py-2 bg-gray-700 text-white rounded-full" data-filter="residencial">Residencial</button>
+                    <button class="filter-btn mx-2 my-2 px-4 py-2 bg-gray-700 text-white rounded-full" data-filter="comercial">Comercial</button>
+                    <button class="filter-btn mx-2 my-2 px-4 py-2 bg-gray-700 text-white rounded-full" data-filter="remodelacion">Remodelación</button>
+                    <button class="filter-btn mx-2 my-2 px-4 py-2 bg-gray-700 text-white rounded-full" data-filter="diseno">Diseño</button>
+                    <button class="filter-btn mx-2 my-2 px-4 py-2 bg-gray-700 text-white rounded-full" data-filter="exterior">Exterior</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid">
+                    <div class="gallery-item residencial" data-aos="fade-up">
+                        <img src="https://via.placeholder.com/400x300?text=Residencial+1" alt="Proyecto Residencial 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </div>
+                    <div class="gallery-item comercial" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://via.placeholder.com/400x300?text=Comercial+1" alt="Proyecto Comercial 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </div>
+                    <div class="gallery-item remodelacion" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://via.placeholder.com/400x300?text=Remodelación+1" alt="Proyecto Remodelación 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </div>
+                    <div class="gallery-item diseno" data-aos="fade-up">
+                        <img src="https://via.placeholder.com/400x300?text=Diseño+1" alt="Proyecto Diseño 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </div>
+                    <div class="gallery-item exterior" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://via.placeholder.com/400x300?text=Exterior+1" alt="Proyecto Exterior 1" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </div>
+                    <div class="gallery-item residencial" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://via.placeholder.com/400x300?text=Residencial+2" alt="Proyecto Residencial 2" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="video" class="py-16 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-12 text-center text-primary">Nuestro Trabajo en Acción</h2>
+                <div class="aspect-w-16 aspect-h-9" data-aos="zoom-in">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="faqs" class="py-16 bg-dark">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-12 text-center text-primary">Preguntas Frecuentes</h2>
+                <div class="space-y-4">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md" data-aos="fade-up">
+                        <h3 class="text-xl font-semibold mb-2">¿Cuál es el tiempo promedio de una obra?</h3>
+                        <p class="text-gray-400">El tiempo varía según el proyecto, pero nos comprometemos a cumplir con los plazos acordados. Generalmente, una remodelación pequeña puede tomar de 2 a 4 semanas, mientras que un proyecto más grande puede llevar varios meses.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="text-xl font-semibold mb-2">¿Ofrecen garantía por sus servicios?</h3>
+                        <p class="text-gray-400">Sí, todos nuestros trabajos cuentan con garantía. La duración depende del tipo de servicio, pero generalmente ofrecemos una garantía de 1 año en mano de obra y nos aseguramos de utilizar materiales de alta calidad con sus respectivas garantías de fábrica.</p>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-xl font-semibold mb-2">¿Trabajan en proyectos fuera de Villa del Dique?</h3>
+                        <p class="text-gray-400">Sí, aunque estamos basados en Villa del Dique, trabajamos en proyectos en toda la región de Córdoba. Dependiendo del tamaño y alcance del proyecto, podemos considerar trabajos en otras áreas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="py-16 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-12 text-center text-primary">Contáctanos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div data-aos="fade-right">
+                        <form id="contact-form" class="space-y-4">
+                            <input type="text" placeholder="Nombre" class="w-full p-2 border rounded bg-gray-800 text-white" required>
+                            <input type="email" placeholder="Email" class="w-full p-2 border rounded bg-gray-800 text-white" required>
+                            <input type="tel" placeholder="Teléfono" class="w-full p-2 border rounded bg-gray-800 text-white" required>
+                            <textarea placeholder="Mensaje" class="w-full p-2 border rounded bg-gray-800 text-white" rows="4" required></textarea>
+                            <button type="submit" class="gradient-bg text-dark py-2 px-6 rounded-full hover:opacity-90 transition-opacity">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                    <div data-aos="fade-left">
+                        <h3 class="text-xl font-semibold mb-4">Información de Contacto</h3>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Villa del Dique, Córdoba, Argentina</li>
+                            <li class="flex items-center"><i class="fas fa-phone mr-2 text-primary"></i> +54 9 3546 500176</li>
+                            <li class="flex items-center"><i class="fas fa-envelope mr-2 text-primary"></i> info@sairesconstrucciones.com</li>
+                        </ul>
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold mb-2">Horario de Atención</h4>
+                            <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                            <p>Sábados: 9:00 AM - 1:00 PM</p>
+                        </div>
+                        <div class="aspect-w-16 aspect-h-9">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27087.78126211651!2d-64.49830344999999!3d-32.08333315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d2c9c7e0a9c4c7%3A0x6d0d9b4f0d8c0a0!2sVilla%20del%20Dique%2C%20C%C3%B3rdoba!5e0!3m2!1ses-419!2sar!4v1635789012345!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="w-full h-full rounded-lg"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="gradient-bg text-dark py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_20241024-235425-seJTw69HhPXgBfhNlFDzDh4eFXfQdj.png" alt="Saires Construcciones Logo" class="w-16 h-16 rounded-full mb-4">
+                    <p>Materializando tus sueños desde Villa del Dique, Córdoba, Argentina.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Enlaces Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="#servicios" class="hover:text-white transition-colors">Servicios</a></li>
+                        <li><a href="#proyectos" class="hover:text-white transition-colors">Proyectos</a></li>
+                        <li><a href="#galeria" class="hover:text-white transition-colors">Galería</a></li>
+                        <li><a href="#faqs" class="hover:text-white transition-colors">FAQs</a></li>
+                        <li><a href="#contacto" class="hover:text-white transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Síguenos</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-dark hover:text-white transition-colors"><i class="fab fa-facebook-f text-2xl"></i></a>
+                        <a href="#" class="text-dark hover:text-white transition-colors"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="#" class="text-dark hover:text-white transition-colors"><i class="fab fa-twitter text-2xl"></i></a>
+                        <a href="#" class="text-dark hover:text-white transition-colors"><i class="fab fa-linkedin-in text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p>&copy; 2024 Saires Construcciones. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5493546500176" target="_blank"  rel="noopener noreferrer" class="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-3 shadow-lg hover:bg-green-600 transition-colors z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Hero slider
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Gallery filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                
+                filterButtons.forEach(btn => btn.classList.remove('active', 'gradient-bg', 'text-dark'));
+                button.classList.add('active', 'gradient-bg', 'text-dark');
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    </script>
+</body>
+</html>
