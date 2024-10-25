@@ -4,6 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saires Construcciones - Materializando tus sueños</title>
+    <meta name="description" content="Saires Construcciones: Calidad y excelencia en construcción y remodelación en Villa del Dique, Córdoba. Servicios de excavación, muebles a medida, obras completas y más.">
+    <meta name="keywords" content="construcción, remodelación, Villa del Dique, Córdoba, excavaciones, muebles a medida, obras completas">
+    <meta name="author" content="Saires Construcciones">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.sairesconstrucciones.com/">
+    <meta property="og:title" content="Saires Construcciones - Materializando tus sueños">
+    <meta property="og:description" content="Calidad y excelencia en construcción y remodelación en Villa del Dique, Córdoba. Servicios de excavación, muebles a medida, obras completas y más.">
+    <meta property="og:image" content="https://www.sairesconstrucciones.com/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.sairesconstrucciones.com/">
+    <meta property="twitter:title" content="Saires Construcciones - Materializando tus sueños">
+    <meta property="twitter:description" content="Calidad y excelencia en construcción y remodelación en Villa del Dique, Córdoba. Servicios de excavación, muebles a medida, obras completas y más.">
+    <meta property="twitter:image" content="https://www.sairesconstrucciones.com/twitter-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1CD8D2">
+    <meta name="msapplication-TileColor" content="#1CD8D2">
+    <meta name="theme-color" content="#1CD8D2">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -60,9 +88,61 @@
         .gradient-bg {
             background: linear-gradient(135deg, #1CD8D2, #93EDC7);
         }
+        #proyectos .container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        #proyectos .grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 2rem;
+            padding-bottom: 1rem;
+        }
+        #proyectos .grid > div {
+            flex: 0 0 auto;
+            width: 300px;
+        }
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .pulse {
+            width: 100px;
+            height: 100px;
+            background: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot_20241024-235425-seJTw69HhPXgBfhNlFDzDh4eFXfQdj.png') no-repeat center center;
+            background-size: contain;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                box-shadow: 0 0 0 0 rgba(29, 216, 210, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(29, 216, 210, 0);
+            }
+            100% {
+                transform: scale(0.8);
+                box-shadow: 0 0 0 0 rgba(29, 216, 210, 0);
+            }
+        }
     </style>
 </head>
 <body class="bg-dark text-white">
+    <div id="preloader">
+        <div class="pulse"></div>
+    </div>
+
     <div class="top-banner gradient-bg text-dark py-2">
         <div class="top-banner-content">
             <span class="mx-4">¡Oferta especial! 15% de descuento en remodelaciones</span>
@@ -152,7 +232,7 @@
                     <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up" data-aos-delay="100">
                         <i class="fas fa-couch text-primary text-5xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Muebles a medida</h3>
-                        <p class="text-gray-400">Diseñamos y fabricamos muebles personalizados para tu hogar u oficina.</p>
+                        <p class="text-gray-400">Diseñamos y fabricamos muebles personalizados para tu hogar  u oficina.</p>
                     </div>
                     <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center" data-aos="fade-up" data-aos-delay="200">
                         <i class="fas fa-hard-hat text-primary text-5xl mb-4"></i>
@@ -193,29 +273,43 @@
             </div>
         </section>
 
-        <section id="proyectos" class="py-16  bg-gray-900">
+        <section id="proyectos" class="py-16 bg-gray-900">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-12 text-center text-primary">Proyectos Destacados</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up">
+                <div class="flex overflow-x-auto pb-4 space-x-6">
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex-shrink-0 w-80" data-aos="fade-up">
                         <img src="https://via.placeholder.com/400x300?text=Proyecto+1" alt="Proyecto 1" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2">Residencia Moderna</h3>
                             <p class="text-gray-400">Diseño y construcción de una residencia moderna con eficiencia energética.</p>
                         </div>
                     </div>
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex-shrink-0 w-80" data-aos="fade-up" data-aos-delay="100">
                         <img src="https://via.placeholder.com/400x300?text=Proyecto+2" alt="Proyecto 2" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2">Remodelación Comercial</h3>
                             <p class="text-gray-400">Renovación completa de un espacio comercial en el centro de la ciudad.</p>
                         </div>
                     </div>
-                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex-shrink-0 w-80" data-aos="fade-up" data-aos-delay="200">
                         <img src="https://via.placeholder.com/400x300?text=Proyecto+3" alt="Proyecto 3" class="w-full h-48 object-cover">
                         <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2">Ampliación Residencial</h3>
                             <p class="text-gray-400">Ampliación y modernización de una residencia familiar tradicional.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex-shrink-0 w-80" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://via.placeholder.com/400x300?text=Proyecto+4" alt="Proyecto 4" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2">Diseño de Interiores</h3>
+                            <p class="text-gray-400">Proyecto de diseño de interiores para un loft urbano contemporáneo.</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow flex-shrink-0 w-80" data-aos="fade-up" data-aos-delay="400">
+                        <img src="https://via.placeholder.com/400x300?text=Proyecto+5" alt="Proyecto 5" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold mb-2">Construcción Sustentable</h3>
+                            <p class="text-gray-400">Proyecto de vivienda ecológica con materiales sostenibles y energías renovables.</p>
                         </div>
                     </div>
                 </div>
@@ -303,7 +397,7 @@
                         <ul class="space-y-2 mb-6">
                             <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Villa del Dique, Córdoba, Argentina</li>
                             <li class="flex items-center"><i class="fas fa-phone mr-2 text-primary"></i> +54 9 3546 500176</li>
-                            <li class="flex items-center"><i class="fas fa-envelope mr-2 text-primary"></i> info@sairesconstrucciones.com</li>
+                            <li class="flex items-center"><i class="fas fa-envelope mr-2 text-primary"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0960676f66497a68607b6c7a6a66677a7d7b7c6a6a6066676c7a276a6664">[email&#160;protected]</a></li>
                         </ul>
                         <div class="mb-6">
                             <h4 class="text-lg font-semibold mb-2">Horario de Atención</h4>
@@ -349,6 +443,7 @@
             </div>
             <div class="mt-8 pt-8 border-t border-gray-800 text-center">
                 <p>&copy; 2024 Saires Construcciones. Todos los derechos reservados.</p>
+                <p class="mt-2">Powered by <a href="https://dualitydomain.com" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">Duality Domain</a></p>
             </div>
         </div>
     </footer>
@@ -357,7 +452,7 @@
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Mobile menu toggle
         document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
@@ -419,6 +514,11 @@
         AOS.init({
             duration: 1000,
             once: true,
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').style.display = 'none';
         });
     </script>
 </body>
